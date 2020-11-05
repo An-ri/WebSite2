@@ -1,4 +1,4 @@
-package com.example.securingweb;
+package com.example.securingweb.registration;
 
 @Target({TYPE, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)

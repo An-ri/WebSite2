@@ -1,4 +1,4 @@
-package com.example.securingweb;
+package com.example.securingweb.registration;
 
 public class EmailValidator
         implements ConstraintValidator<ValidEmail, String> {

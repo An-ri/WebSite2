@@ -1,3 +1,4 @@
+package com.example.securingweb.registration;
 
 @Service
 public class UserService implements IUserService {

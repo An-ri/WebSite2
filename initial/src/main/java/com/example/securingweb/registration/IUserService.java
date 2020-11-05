@@ -1,4 +1,4 @@
-package com.example.securingweb;
+package com.example.securingweb.registration;
 
 public interface IUserService {
     User registerNewUserAccount(UserDto userDto)
