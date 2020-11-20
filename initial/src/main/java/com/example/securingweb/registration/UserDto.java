@@ -1,5 +1,8 @@
 package com.example.securingweb.registration;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class UserDto {
     @NotNull
     @NotEmpty

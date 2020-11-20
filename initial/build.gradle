@@ -16,10 +16,52 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-core'
 	implementation 'org.springframework.security:spring-security-test'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+
+	implementation 'jakarta.validation:jakarta.validation-api:2.0.2'
+
+	// utiles ?
+	// implementation 'org.springframework.boot:spring-boot-starter-mail'
+	// implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+	// 2fa
+	implementation 'org.jboss.aerogear:aerogear-otp-java:1.0.0'
+	
+	// Spring Security
+	// implementation 'org.springframework.boot:spring-boot-starter-security'
+	// implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+	
+	// Servlet
+	// implementation 'javax.servlet:jstl'
+	// implementation 'javax.el:el-api:2.2'
+		
+	// Password Validation
+	// implementation 'org.passay:passay:1.0'
+	
+	// JPA dependencies		
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// DB dependencies		
+	// implementation 'mysql:mysql-connector-java'
+	// implementation 'com.h2database:h2'
+	// implementation 'com.google.guava:guava:20.0'
+
+	// User Agent parser	
+	// implementation 'com.github.ua-parser:uap-java:1.4.0'
+
+ 	// maxmind dependency	
+	// implementation 'com.maxmind.geoip2:geoip2:2.12.0'
+
+	// test
+	// testImplementation 'io.rest-assured:rest-assured'
+	// testImplementation 'net.logstash.logback:logstash-logback-encoder:4.8'
+	// testImplementation 'org.springframework.boot:spring-boot-configuration-processor'
+	// testImplementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+			
 }
 
 test {

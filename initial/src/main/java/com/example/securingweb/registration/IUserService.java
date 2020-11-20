@@ -1,6 +1,7 @@
 package com.example.securingweb.registration;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+import com.example.securingweb.exceptions.UserAlreadyExistException;
+import com.example.securingweb.persistence.model.User;
 
 public interface IUserService {
     User registerNewUserAccount(UserDto userDto)
