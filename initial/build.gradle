@@ -32,11 +32,11 @@ dependencies {
 	implementation 'org.jboss.aerogear:aerogear-otp-java:1.0.0'
 	
 	// Spring Security
-	// implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	// implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	
 	// Servlet
-	// implementation 'javax.servlet:jstl'
+	implementation 'javax.servlet:jstl'
 	// implementation 'javax.el:el-api:2.2'
 		
 	// Password Validation
@@ -46,9 +46,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
 	// DB dependencies		
-	// implementation 'mysql:mysql-connector-java'
-	// implementation 'com.h2database:h2'
-	// implementation 'com.google.guava:guava:20.0'
+	implementation 'mysql:mysql-connector-java'
+	implementation 'com.h2database:h2'
+	implementation 'com.google.guava:guava:20.0'
 
 	// User Agent parser	
 	// implementation 'com.github.ua-parser:uap-java:1.4.0'
@@ -61,6 +61,9 @@ dependencies {
 	// testImplementation 'net.logstash.logback:logstash-logback-encoder:4.8'
 	// testImplementation 'org.springframework.boot:spring-boot-configuration-processor'
 	// testImplementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+	 compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
 			
 }
 
