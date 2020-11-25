@@ -26,7 +26,6 @@
 					</span>
 
                 <div class="wrap-input100 validate-input m-b-10" data-validate = "First name is required">
-                    <label th:text="#{label.user.firstName}">first</label>
                     <input th:field="*{firstName}" class="input100" type="text" name="firstname" placeholder="First name">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
@@ -35,7 +34,6 @@
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-10" data-validate = "Last name is required">
-                    <label th:text="#{label.user.lastName}">last</label>
                     <input th:field="*{lastName}" class="input100" type="text" name="lastname" placeholder="Last name">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
@@ -53,7 +51,6 @@
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
-                    <label th:text="#{label.user.password}">password</label>
                     <input th:field="*{password}" class="input100" type="password" name="password" placeholder="Password">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
@@ -62,9 +59,7 @@
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-10" data-validate = "Please confirm password">
-                    <label th:text="#{label.user.confirmPass}">confirm</label>
                     <input th:field="*{matchingPassword}" class="input100" type="password" name="password" placeholder="Confirm password">
-                    <input class="input100" type="password" name="pass_confirm" placeholder="Confirm password">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<i class="fa fa-lock"></i>
