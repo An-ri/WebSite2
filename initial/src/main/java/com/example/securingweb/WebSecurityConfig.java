@@ -2,13 +2,18 @@ package com.example.securingweb;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+// import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+// import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.core.userdetails.User;
 
 @Configuration
 @EnableWebSecurity
@@ -17,20 +22,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/home","/register","/js/**","/css/**","/images/**","/fonts/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
+                	.antMatchers("/", "/home","/register","/js/**","/css/**","/images/**","/fonts/**","/login/**").permitAll()
+                	.anyRequest().authenticated()
+                	.and()
                 .formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/homepage.html", true)
-                .failureUrl("/login.html?error=true")
+                	.loginPage("/login")
+                	.permitAll()
+          //      .loginProcessingUrl("/perform_login")
+          //     .defaultSuccessUrl("/homepage.html", true)
+           //     .failureUrl("/login.html?error=true")
           //      .failureHandler(authenticationFailureHandler())
-                .and()
+                	.and()
                 .logout()
-                .logoutUrl("/perform_logout")
-                .deleteCookies("JSESSIONID");
-           //     .logoutSuccessHandler(logoutSuccessHandler());
+                	.permitAll();
+               
     }
 
    //@Autowired
@@ -46,11 +51,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return null;
 	}
 
-    @Autowired
+   /* @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
             .inMemoryAuthentication()
                 .withUser("user").password("password").roles("USER","ADMIN");
     }
+    */
+	@Bean
+	@Override
+	public UserDetailsService userDetailsService() {
+		UserDetails user =
+			 User.withDefaultPasswordEncoder()
+				.username("user")
+				.password("password")
+				.roles("USER")
+				.build();
+
+		return new InMemoryUserDetailsManager(user);
+	}
     
 }
