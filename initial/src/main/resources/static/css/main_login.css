@@ -526,3 +526,9 @@ iframe {
     padding-right: 15px;
   }
 }
+
+
+
+/*HIDING LABELS*/
+
+#foo_label { display: none;}

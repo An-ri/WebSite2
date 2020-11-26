@@ -49,6 +49,7 @@ dependencies {
 	implementation 'mysql:mysql-connector-java'
 	implementation 'com.h2database:h2'
 	implementation 'com.google.guava:guava:20.0'
+	
 
 	// User Agent parser	
 	// implementation 'com.github.ua-parser:uap-java:1.4.0'
