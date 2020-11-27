@@ -58,7 +58,7 @@ public class RegistrationController {
     }
   */  
     
-    @PostMapping("/register")
+    @PostMapping("/doRegister")
     public ModelAndView registerUserAccount(
             @ModelAttribute("user") @Valid UserDto userDto,
             HttpServletRequest request, Errors errors) {
