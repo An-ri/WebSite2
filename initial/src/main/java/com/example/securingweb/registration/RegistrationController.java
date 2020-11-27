@@ -50,13 +50,13 @@ public class RegistrationController {
         return new RedirectView("/user/ranks");
     }
     
-    @RequestMapping(value = "/successRegister", method = RequestMethod.GET)
+/*    @RequestMapping(value = "/successRegister", method = RequestMethod.GET)
     public ModelAndView getRanks(Model model, HttpServletRequest request)
     {
         String view = "the-view-name";
         return new ModelAndView(view, "command", model);
     }
-    
+  */  
     
     @PostMapping("/register")
     public ModelAndView registerUserAccount(
