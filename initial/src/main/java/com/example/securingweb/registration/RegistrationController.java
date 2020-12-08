@@ -50,14 +50,14 @@ public class RegistrationController {
         return new UserDto();
     }
     
-    @RequestMapping(value = "/doRegister", method = RequestMethod.POST)
+  /*  @RequestMapping(value = "/doRegister", method = RequestMethod.POST)
     public View action(Model model, @ModelAttribute("myEntity") User myEntity)
     {
         // save the entity or do whatever you need
 
         return new RedirectView("/user/ranks");
     }
-    
+    */
 /*    @RequestMapping(value = "/successRegister", method = RequestMethod.GET)
     public ModelAndView getRanks(Model model, HttpServletRequest request)
     {
@@ -66,7 +66,7 @@ public class RegistrationController {
     }
   */  
     
-    @PostMapping("/register")
+    @PostMapping("/doRegister")
     public ModelAndView registerUserAccount(
             @ModelAttribute("user") @Valid UserDto userDto,
             HttpServletRequest request, Errors errors) {
@@ -77,7 +77,7 @@ public class RegistrationController {
         User registered = userService.registerNewUserAccount(userDto);
         System.out.println(registered.getFirstName());
 
-        return new ModelAndView("doRegister", "user", userDto);
+        return new ModelAndView("successRegister", "user", userDto);
     }
     
     @GetMapping("/login")

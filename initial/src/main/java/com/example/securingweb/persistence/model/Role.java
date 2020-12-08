@@ -2,6 +2,7 @@ package com.example.securingweb.persistence.model;
 
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+
+
 @Entity
 public class Role {
 
@@ -17,7 +20,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "roles")
     private Collection<User> users;
 
     @ManyToMany
