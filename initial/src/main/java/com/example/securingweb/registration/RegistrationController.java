@@ -3,6 +3,7 @@ package com.example.securingweb.registration;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -21,6 +22,13 @@ import com.example.securingweb.persistence.model.User;
 
 @Controller
 public class RegistrationController {
+	
+	@Autowired 
+	private IUserService userService;
+	
+    public RegistrationController() {
+        super();
+    }
 
 
     @GetMapping("/register")
@@ -42,7 +50,7 @@ public class RegistrationController {
         return new UserDto();
     }
     
-    @RequestMapping(value = "/successRegister", method = RequestMethod.POST)
+    @RequestMapping(value = "/doRegister", method = RequestMethod.POST)
     public View action(Model model, @ModelAttribute("myEntity") User myEntity)
     {
         // save the entity or do whatever you need
@@ -58,20 +66,31 @@ public class RegistrationController {
     }
   */  
     
-    @PostMapping("/doRegister")
+    @PostMapping("/register")
     public ModelAndView registerUserAccount(
             @ModelAttribute("user") @Valid UserDto userDto,
             HttpServletRequest request, Errors errors) {
     		
     	
-    	System.out.println("On est passé par là!");
-       /* try {
-            User registered = userService.registerNewUserAccount(userDto);
-        } catch (UserAlreadyExistException uaeEx) {
-            mav.addObject("message", "An account for that username/email already exists.");
-            return mav;
-        }*/
+    	System.out.println(userDto.getFirstName());
+    	//System.out.println(userService.repository);
+        User registered = userService.registerNewUserAccount(userDto);
+        System.out.println(registered.getFirstName());
 
-        return new ModelAndView("successRegister", "user", userDto);
+        return new ModelAndView("doRegister", "user", userDto);
     }
+    
+    @GetMapping("/login")
+    public String login(Model model, String error, String logout) {
+        if (error != null)
+            model.addAttribute("error", "Your username and password is invalid.");
+
+        if (logout != null)
+            model.addAttribute("message", "You have been logged out successfully.");
+
+        return "login";
+    }
+
+
+    
 }

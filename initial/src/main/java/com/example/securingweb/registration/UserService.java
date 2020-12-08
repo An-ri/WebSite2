@@ -44,6 +44,12 @@ public class UserService implements IUserService {
     private boolean emailExist(String email) {
         return repository.findByEmail(email) != null;
     }
+    
+    @Override
+    public void saveRegisteredUser(final User user) {
+        repository.save(user);
+    }
+
 
     @PostMapping("/user/registration")
     public ModelAndView registerUserAccount
