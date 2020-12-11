@@ -4,6 +4,8 @@ package com.example.securingweb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 // import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -12,12 +14,20 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+
+import com.example.securingweb.login.MyUserDetailsService;
+
 // import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.core.userdetails.User;
 
 @Configuration
 @EnableWebSecurity
+@ImportResource({ "classpath:webSecurityConfig.xml" })
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	private MyUserDetailsService userDetailsService;
+	
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -28,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 	.loginPage("/login")
                 	.permitAll()
-                	.loginProcessingUrl("/perform_login")
+                	.loginProcessingUrl("/doLogin")
                 		.defaultSuccessUrl("/brest.html", true)
            //     .failureUrl("/login.html?error=true")
           //      .failureHandler(authenticationFailureHandler())
@@ -37,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 	.permitAll();
                
     }
-
+    
    //@Autowired
    // private LogoutSuccessHandler logoutSuccessHandler() {
 		// TODO Auto-generated method stub
@@ -69,6 +79,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.build();
 
 		return new InMemoryUserDetailsManager(user);
+	}
+
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) 
+	  throws Exception {
+	    auth.userDetailsService(userDetailsService);
 	}
     
 }

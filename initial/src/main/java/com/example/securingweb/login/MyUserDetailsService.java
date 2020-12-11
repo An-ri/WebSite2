@@ -1,4 +1,4 @@
-package com.example.securingweb.registration;
+package com.example.securingweb.login;
 
 import java.util.ArrayList;
 import java.util.Collection;
