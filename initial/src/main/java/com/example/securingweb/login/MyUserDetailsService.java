@@ -1,6 +1,7 @@
 package com.example.securingweb.login;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -26,7 +27,8 @@ public class MyUserDetailsService implements UserDetailsService {
     //
     public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
-
+         System.out.println("load User by username");
+         System.out.println(Arrays.toString(Thread.currentThread().getStackTrace()));   	
         User user = userRepository.findByEmail(email);
         if (user == null) {
             throw new UsernameNotFoundException(
@@ -36,6 +38,7 @@ public class MyUserDetailsService implements UserDetailsService {
         boolean accountNonExpired = true;
         boolean credentialsNonExpired = true;
         boolean accountNonLocked = true;
+        System.out.println(user.getFirstName());
         return  new org.springframework.security.core.userdetails.User
                 (user.getEmail(),
                         user.getPassword().toLowerCase(), enabled, accountNonExpired,

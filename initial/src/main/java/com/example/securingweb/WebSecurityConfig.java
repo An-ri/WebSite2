@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
@@ -22,7 +24,7 @@ import org.springframework.security.core.userdetails.User;
 
 @Configuration
 @EnableWebSecurity
-@ImportResource({ "classpath:webSecurityConfig.xml" })
+//@ImportResource({ "classpath:webSecurityConfig.xml" })
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
@@ -38,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 	.loginPage("/login")
                 	.permitAll()
-                	.loginProcessingUrl("/doLogin")
+                	.loginProcessingUrl("/dologin")
                 		.defaultSuccessUrl("/brest.html", true)
            //     .failureUrl("/login.html?error=true")
           //      .failureHandler(authenticationFailureHandler())
@@ -46,6 +48,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 	.permitAll();
                
+    }
+    
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    }
+    
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
     
    //@Autowired

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
@@ -25,6 +26,8 @@ public class RegistrationController {
 	
 	@Autowired 
 	private IUserService userService;
+	
+	private String userName;
 	
     public RegistrationController() {
         super();
@@ -73,11 +76,18 @@ public class RegistrationController {
     		
     	
     	System.out.println(userDto.getFirstName());
+    	userName = userDto.getFirstName();
     	//System.out.println(userService.repository);
         User registered = userService.registerNewUserAccount(userDto);
         System.out.println(registered.getFirstName());
 
         return new ModelAndView("successRegister", "user", userDto);
+    }
+    
+    @RequestMapping(value = "/displayName", method = RequestMethod.GET)
+    @ResponseBody
+    public String displayNameAfterRegister() {
+        return userName;
     }
     
     @GetMapping("/login")
