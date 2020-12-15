@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 // import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -34,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                	.antMatchers("/", "/home","/register","/js/**","/css/**","/images/**","/fonts/**","/login/**","/successRegister","/doRegister").permitAll()
+                	.antMatchers("/", "/home","/register","/js/**","/css/**","/images/**","/fonts/**","/login/**","/successRegister","/doRegister","/h2/**").permitAll()
                 	.anyRequest().authenticated()
                 	.and()
                 .formLogin()
@@ -50,16 +53,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                
     }
     
+    
+    @Bean
+    public AuthenticationProvider daoAuthenticationProvider() {
+      DaoAuthenticationProvider provider = 
+        new DaoAuthenticationProvider();
+      provider.setPasswordEncoder(passwordEncoder());
+      provider.setUserDetailsService(this.userDetailsService);
+      return provider;
+    }
+    
+/*    
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
-    
+*/
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+      return new BCryptPasswordEncoder();
     }
-    
    //@Autowired
    // private LogoutSuccessHandler logoutSuccessHandler() {
 		// TODO Auto-generated method stub
@@ -89,7 +102,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.password("password")
 				.roles("USER")
 				.build();
-
+		System.out.println(user.getPassword());
 		return new InMemoryUserDetailsManager(user);
 	}
 

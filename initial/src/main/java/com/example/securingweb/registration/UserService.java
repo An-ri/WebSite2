@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
@@ -18,15 +19,18 @@ import com.example.securingweb.persistence.dao.UserRepository;
 import com.example.securingweb.persistence.model.Role;
 import com.example.securingweb.persistence.model.User;
 
+
 @Service
 public class UserService implements IUserService {
     @Autowired
     private UserRepository repository;
+    private final PasswordEncoder passwordEncoder = null;
 
     @Transactional
     @Override
     public User registerNewUserAccount(UserDto userDto)
             throws UserAlreadyExistException {
+    
 
         if (emailExist(userDto.getEmail())) {
             throw new UserAlreadyExistException(
@@ -36,7 +40,7 @@ public class UserService implements IUserService {
         User user = new User();
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
-        user.setPassword(userDto.getPassword());
+		user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setEmail(userDto.getEmail());
         user.setRoles(Arrays.asList(new Role("ROLE_USER")));
         return repository.save(user);
