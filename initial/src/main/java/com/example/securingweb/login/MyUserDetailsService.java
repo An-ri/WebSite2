@@ -41,7 +41,7 @@ public class MyUserDetailsService implements UserDetailsService {
         System.out.println(user.getFirstName());
         return  new org.springframework.security.core.userdetails.User
                 (user.getEmail(),
-                        user.getPassword().toLowerCase(), enabled, accountNonExpired,
+                        user.getPassword(), enabled, accountNonExpired,
                         credentialsNonExpired, accountNonLocked,
                         getAuthorities(user.getRoles()));
     }
