@@ -4,7 +4,7 @@ package com.example.securingweb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
+//import org.springframework.context.annotation.ImportResource;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,18 +12,18 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+//import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+//import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 import com.example.securingweb.login.MyUserDetailsService;
 
 // import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
-import org.springframework.security.core.userdetails.User;
+//import org.springframework.security.core.userdetails.User;
 
 @Configuration
 @EnableWebSecurity
@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 	.loginPage("/login")
                 	.permitAll()
                 	.loginProcessingUrl("/dologin")
-                		.defaultSuccessUrl("/brest.html", true)
+                		.defaultSuccessUrl("/brest", true)
            //     .failureUrl("/login.html?error=true")
           //      .failureHandler(authenticationFailureHandler())
                 	.and()
@@ -93,6 +93,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("user").password("password").roles("USER","ADMIN");
     }
     */
+    
+    /*
 	@Bean
 	@Override
 	public UserDetailsService userDetailsService() {
@@ -105,7 +107,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		System.out.println(user.getPassword());
 		return new InMemoryUserDetailsManager(user);
 	}
-
+	*/
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) 
 	  throws Exception {

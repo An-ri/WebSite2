@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
-import org.springframework.web.servlet.view.RedirectView;
+//import org.springframework.web.servlet.View;
+//import org.springframework.web.servlet.view.RedirectView;
 
-import com.example.securingweb.exceptions.UserAlreadyExistException;
+//import com.example.securingweb.exceptions.UserAlreadyExistException;
 import com.example.securingweb.persistence.model.User;
 
 @Controller
@@ -75,11 +75,11 @@ public class RegistrationController {
             HttpServletRequest request, Errors errors) {
     		
     	
-    	System.out.println(userDto.getFirstName());
+
     	userName = userDto.getFirstName();
     	//System.out.println(userService.repository);
         User registered = userService.registerNewUserAccount(userDto);
-        System.out.println(registered.getFirstName());
+        System.out.println(registered.getFirstName()+" is now registered");
 
         return new ModelAndView("successRegister", "user", userDto);
     }
