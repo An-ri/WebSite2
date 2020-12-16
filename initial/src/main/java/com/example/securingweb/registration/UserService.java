@@ -26,7 +26,8 @@ public class UserService implements IUserService {
     @Autowired
     private UserRepository repository;
     
-    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Transactional
     @Override
