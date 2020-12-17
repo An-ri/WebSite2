@@ -16,8 +16,13 @@ repositories {
 dependencies {
 
 	// pamela
-	implementation 'org.openflexo:pamela-core:1.5'
-	implementation 'org.openflexo:pamela-security-patterns:1.5'
+	implementation 'org.openflexo:pamela-core:1.6-SNAPSHOT'
+	implementation 'org.openflexo:pamela-security-patterns:1.6-SNAPSHOT'
+	//implementation 'org.openflexo:pamela-core:1.6-SNAPSHOT'
+	//implementation 'org.openflexo:pamela-security-patterns:1.6-SNAPSHOT'
+	//compile("org.openflexo:pamela-core:1.6-SNAPSHOT")
+	//compile("org.openflexo:pamela-security-patterns:1.6-SNAPSHOT")
+	
 	
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'

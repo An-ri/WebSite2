@@ -1,4 +1,4 @@
-package com.example.securingweb.login;
+package com.example.securingweb.authentication;
 
 import java.util.ArrayList;
 import java.util.Arrays;
